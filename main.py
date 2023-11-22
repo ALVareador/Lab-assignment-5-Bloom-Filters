@@ -2,7 +2,7 @@ from BloomFilter import BloomFilter as BF
 import pandas as pd
 import random
 
-dataset = pd.read_csv("german-names.csv")
+dataset = pd.read_csv("german-names.csv").sort_values(by=1, ascending=False)
 size = 1000 
 nHashes = 5
 qGrams = 2
