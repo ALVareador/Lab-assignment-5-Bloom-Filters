@@ -2,15 +2,17 @@ from BloomFilter import BloomFilter as BF
 import pandas as pd
 import random
 
-dataset = pd.read_csv("german-names.csv").sort_values(by=1, ascending=False)
-size = 1000 
-nHashes = 5
-qGrams = 2
+def main():
+    dataset = pd.read_csv(filepath_or_buffer="german-names.csv", names=["Name", "Frecuency"]).sort_values(by="Frecuency", ascending=False)
+    size = 1000 
+    nHashes = 5
+    qGrams = 2
 
-filter = BF(dataset, size, nHashes, qGrams)
+    filter = BF(dataset, size, nHashes, qGrams)
 
-sampleD = dataset.sample(n=random.randint(5, 50), axis=0).transpose()
+    for sample in dataset.sample(n=random.randint(5, 50), axis=0).transpose():
+        filter.add(str(sample).encode())
 
-for sample in sampleD:
-    filter.add(str(sample).encode())
-    print(sample)
+
+if __name__ == "__main__":
+    main()

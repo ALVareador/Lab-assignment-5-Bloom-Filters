@@ -62,4 +62,5 @@ class BloomFilter:
 
     def __str__(self) -> str:
         with pd.option_context('display.max_rows', None, 'display.max_columns', None):
-            print(self.dataset)
+            toRet = self.filter + "\n" #+ self.dataset
+        return toRet
