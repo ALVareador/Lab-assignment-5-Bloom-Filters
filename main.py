@@ -2,7 +2,8 @@ from BloomFilter import BloomFilter as BF
 import pandas as pd
 import random
 
-dataset = pd.read_csv("pprl-attack-data\german-names.csv")
+predataset = pd.read_csv("pprl-attack-data\german-names.csv")
+dataset = predataset.transpose()
 size = 1000 
 nHashes = 5
 qGrams = 2
