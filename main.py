@@ -25,7 +25,7 @@ def frequencyBasedAttack(filter:BF, names, expectedQGrams, threshold):
     return candidateQGrams, reidentifiedNames
 
 def main(size:int, n:int, nHashes:int, qGrams:int) -> None:
-    dataset = pd.read_csv(filepath_or_buffer="german-names.csv", names=["Name", "Frecuency"]).sort_values(by="Frecuency", ascending=False)
+    dataset = pd.read_csv(filepath_or_buffer="german-names.csv", names=["Name", "Frequency"]).sort_values(by="Frequency", ascending=False)
 
     filter = BF(dataset, size, nHashes, qGrams)
 
@@ -33,7 +33,7 @@ def main(size:int, n:int, nHashes:int, qGrams:int) -> None:
     for index, row in samples.iterrows():
         filter.add(str(row['Name']).encode())
 
-    AttactDataset = pd.read_csv(filepath_or_buffer="german-names.csv", names=["Name", "Frecuency"]).sort_values(by="Frecuency", ascending=False)
+    AttactDataset = pd.read_csv(filepath_or_buffer="german-names.csv", names=["Name", "Frequency"]).sort_values(by="Frequency", ascending=False)
     candidateQGrams, reidentifiedNames = frequencyBasedAttack(filter, AttactDataset['Name'].to_list(), qGrams, 2)
     
     positives = 0
