@@ -3,7 +3,7 @@ import pandas as pd
 import random
 from tabulate import tabulate
 
-def frequencyBasedAttack(filter:BF, names, expectedQGrams, threshold):
+def frequencyBasedAttack(filter:BF, names, threshold:int):
     candidateQGrams = dict()
     reidentifiedNames = list()
 
@@ -34,7 +34,7 @@ def main(size:int, n:int, nHashes:int, qGrams:int) -> None:
         filter.add(str(row['Name']).encode())
 
     AttactDataset = pd.read_csv(filepath_or_buffer="german-names.csv", names=["Name", "Frequency"]).sort_values(by="Frequency", ascending=False)
-    candidateQGrams, reidentifiedNames = frequencyBasedAttack(filter, AttactDataset['Name'].to_list(), qGrams, 2)
+    candidateQGrams, reidentifiedNames = frequencyBasedAttack(filter, AttactDataset['Name'].to_list(), qGrams)
     
     positives = 0
     falsePositives = 0
